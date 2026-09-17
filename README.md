@@ -247,3 +247,21 @@ sudo tailscale serve reset
 - The service worker caches only the application shell, never message APIs or
   attachments.
 - Tailscale is the authentication and network boundary.
+
+## Working on this safely
+
+This repository holds the code, never the archive. Every database, attachment
+store and contact export is gitignored, and a pre-commit hook refuses anything
+that still looks like real data: phone numbers, personal email addresses, Apple
+handles, home directory paths, files over 1 MB, and anything named like a
+database, backup or screenshot.
+
+Turn the hook on once after cloning:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+Use placeholders in docs and fixtures: `USER`, `555-0100`, `user@example.com`.
+Screenshots are the easiest way to leak: any real screenshot of the reader shows
+real conversations, so shoot against a scrubbed database or crop to structure.

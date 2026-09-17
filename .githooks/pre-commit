@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Refuse to commit anything that looks like real message data.
+#
+# This archive holds five years of real conversations, so the failure mode is
+# not "a bug ships" but "a friend's phone number is on the internet forever".
+# The .gitignore covers the databases and attachment stores. This covers the
+# mistakes .gitignore cannot: a pasted transcript, a screenshot of the reader, a
+# contact export renamed, a debug dump committed at 2am.
+#
+# Install once:  git config core.hooksPath .githooks
+# Bypass (think first):  git commit --no-verify
+exec python3 "$(dirname "$0")/check-staged.py"
