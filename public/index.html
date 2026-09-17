@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f7f4ed">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="TextView">
+  <meta name="format-detection" content="telephone=no">
+  <title>TextView</title>
+  <link rel="manifest" href="/manifest.webmanifest?v=15">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=15">
+  <link rel="stylesheet" href="/styles.css?v=15">
+</head>
+<body>
+  <div id="app">
+    <aside class="sidebar">
+      <header class="sidebar-header">
+        <div>
+          <p class="eyebrow">All your messages</p>
+          <h1>Messages</h1>
+        </div>
+        <div class="header-actions">
+          <button class="icon-button" id="globalAttachmentsButton" aria-label="Browse all attachments">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="m4 17 5-4 3 2 3-3 5 5"/></svg>
+          </button>
+          <button class="icon-button" id="themeButton" aria-label="Toggle appearance">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9c0-.5-.04-.9-.1-1.4A7 7 0 0 1 12 3Z"/></svg>
+          </button>
+        </div>
+      </header>
+      <form class="search" id="searchForm" role="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg>
+        <input id="searchInput" type="search" placeholder="Search every message" autocomplete="off">
+        <button type="button" id="clearSearch" aria-label="Clear search">×</button>
+      </form>
+      <div class="filter-row" id="filterRow" hidden>
+        <span>Search results</span>
+        <button id="closeResults">Done</button>
+      </div>
+      <main class="conversation-list" id="conversationList" aria-live="polite"></main>
+      <button class="load-more" id="loadConversations" hidden>Load more</button>
+    </aside>
+
+    <section class="thread empty" id="thread">
+      <header class="thread-header">
+        <button class="back-button" id="backButton" aria-label="Back to conversations">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+          <span>Messages</span>
+        </button>
+        <div class="thread-person" id="threadPerson"></div>
+        <button class="icon-button" id="threadSearchButton" aria-label="Search this conversation">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg>
+        </button>
+        <button class="icon-button" id="threadAttachmentsButton" aria-label="Browse conversation attachments">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="m4 17 5-4 3 2 3-3 5 5"/></svg>
+        </button>
+      </header>
+      <div class="thread-search" id="threadSearch" hidden>
+        <input id="threadSearchInput" type="search" placeholder="Search this conversation">
+        <div class="match-nav" id="matchNav" hidden>
+          <span id="matchStatus"></span>
+          <button id="newerMatch" aria-label="Newer occurrence">↑</button>
+          <button id="olderMatch" aria-label="Older occurrence">↓</button>
+        </div>
+        <button id="closeThreadSearch">Cancel</button>
+      </div>
+      <div class="message-scroll" id="messageScroll">
+        <div class="welcome" id="welcome">
+          <div class="welcome-mark">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 14h40v29H29L17 53V43h-5z"/><path d="M21 24h22M21 32h15"/></svg>
+          </div>
+          <h2>Every message,<br>all in one place.</h2>
+          <p>Choose a conversation or search across SMS, MMS, RCS, iMessage, and attachments.</p>
+        </div>
+        <button class="older-button" id="loadOlder" hidden>Load earlier messages</button>
+        <div class="messages" id="messages"></div>
+      </div>
+    </section>
+  </div>
+  <div class="viewer" id="viewer" hidden>
+    <header class="viewer-header">
+      <span id="viewerCounter"></span>
+      <button id="closeViewer" aria-label="Close attachment">×</button>
+    </header>
+    <button class="viewer-arrow previous" id="previousAttachment" aria-label="Previous attachment">‹</button>
+    <div class="viewer-content" id="viewerContent"></div>
+    <button class="viewer-arrow next" id="nextAttachment" aria-label="Next attachment">›</button>
+    <footer class="viewer-footer">
+      <div class="viewer-details">
+        <strong id="viewerName"></strong>
+        <span id="viewerMeta"></span>
+      </div>
+      <button id="showInConversation">Show in conversation</button>
+    </footer>
+  </div>
+  <section class="gallery" id="gallery" hidden>
+    <header class="gallery-header">
+      <div>
+        <p class="eyebrow">Your attachments</p>
+        <h2 id="galleryTitle">All attachments</h2>
+      </div>
+      <button class="icon-button" id="closeGallery" aria-label="Close attachments">×</button>
+    </header>
+    <nav class="gallery-filters" id="galleryFilters" aria-label="Attachment types">
+      <button class="active" data-type="all">All</button>
+      <button data-type="image">Images</button>
+      <button data-type="video">Videos</button>
+      <button data-type="audio">Audio</button>
+      <button data-type="file">Files</button>
+    </nav>
+    <div class="gallery-scroll" id="galleryScroll">
+      <div class="gallery-grid" id="galleryGrid"></div>
+      <div class="gallery-loading" id="galleryLoading" hidden>Loading…</div>
+    </div>
+  </section>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <script type="module" src="/app.js?v=15"></script>
+</body>
+</html>

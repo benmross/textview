@@ -1,0 +1,25 @@
+[Unit]
+Description=TextView unified message viewer
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/USER/Documents/textview
+Environment=NODE_ENV=production
+Environment=TEXTVIEW_HOST=127.0.0.1
+Environment=TEXTVIEW_PORT=8787
+ExecStart=/home/USER/.nvm/versions/node/v24.18.0/bin/node --max-old-space-size=384 /home/USER/Documents/textview/server.mjs
+Restart=always
+RestartSec=3
+TimeoutStopSec=10
+MemoryHigh=768M
+MemoryMax=1G
+TasksMax=256
+LimitNOFILE=8192
+OOMPolicy=stop
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=default.target

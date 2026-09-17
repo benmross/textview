@@ -1,0 +1,7 @@
+[Unit]
+Description=Check TextView responsiveness
+After=textview-user.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /home/USER/Documents/textview/tools/healthcheck.sh

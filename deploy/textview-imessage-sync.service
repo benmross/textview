@@ -1,0 +1,11 @@
+[Unit]
+Description=Sync new iMessages from the Mac into TextView
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/Documents/textview
+ExecStart=%h/Documents/textview/tools/sync_imessage.sh
+Nice=10
+IOSchedulingClass=idle
+TimeoutStartSec=3600

@@ -1,0 +1,43 @@
+# Primary/local databases and SQLite working files
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
+
+# Raw message sources and mirrored attachment stores
+sms-*.xml
+imessage-import/
+
+# Generated application data
+data/
+exports/
+test-screenshots/
+*.sha256
+
+# Python/editor/runtime noise
+__pycache__/
+*.py[cod]
+*.tmp
+*.building
+*.pending
+*.pending.db
+*-rebuilt.json
+.DS_Store
+
+# Real personal data. These are the files that must never be published:
+# contacts.vcf is a full export of real contacts, and the audit and validation
+# reports quote real handles.
+contacts.vcf
+attachment-audit.json
+validation.json
+
+# Vendored extracted packages and local screenshots
+vendor/
+node_modules/
+test-screenshots/
+*.bak
+*.bak-*
+
+# The owner's message-specific repair rules and own number (see
+# tools/local_overrides.py). Real conversation text: never published.
+local_overrides.json

@@ -1,0 +1,12 @@
+[Unit]
+Description=Monitor TextView every minute
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=1min
+AccuracySec=10s
+Persistent=true
+Unit=textview-health.service
+
+[Install]
+WantedBy=timers.target

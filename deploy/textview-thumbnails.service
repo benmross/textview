@@ -1,0 +1,12 @@
+[Unit]
+Description=Prebuild TextView browser media derivatives
+After=textview-user.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/USER/Documents/textview
+ExecStart=/usr/bin/python3 /home/USER/Documents/textview/tools/build_thumbnails.py --archive-scan --workers 1 --prune
+Nice=10
+IOSchedulingClass=idle
+CPUQuota=350%
+MemoryMax=2560M

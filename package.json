@@ -1,0 +1,15 @@
+{
+  "name": "textview",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "index": "python3 tools/build_app_index.py",
+    "start": "node server.mjs",
+    "test": "node --test",
+    "check": "node --check server.mjs && node --test && python3 -m unittest discover -s test -p 'test_*.py'"
+  },
+  "engines": {
+    "node": ">=22.5"
+  }
+}

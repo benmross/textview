@@ -1,0 +1,17 @@
+{
+  "owner_phone": "+15555550100",
+  "imessage_source_host": "mac",
+  "sms_address_overrides": [
+    [1600000000000, "exact body of the restored SMS", "tel:5555550101"]
+  ],
+  "out_of_order_reactions": [
+    [1600000001000, "Laughed at “exact body of the target”",
+     1600000002000, "exact body of the target"]
+  ],
+  "dedup_decisions": [
+    ["sms-unknown-sender-example",
+     "merge the matching records and assign the counterpart",
+     "Why the owner decided this.",
+     "archive owner", "2026-01-01"]
+  ]
+}
