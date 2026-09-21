@@ -17,6 +17,27 @@ journalctl --user -u textview-imessage-sync.service -n 100 --no-pager
 listener to the private tailnet. `textview-imessage-sync.timer` performs the
 hourly Mac sync; `textview-health.timer` checks responsiveness every minute.
 
+**The host is not in this repo.** `tools/sync_imessage.sh` ships the
+placeholder `your-mac.local`, because this repository is public. A real
+install must set `MESSAGE_SOURCE_MAC`; the supported place is a systemd
+drop-in at
+`~/.config/systemd/user/textview-imessage-sync.service.d/host.conf`:
+
+```
+[Service]
+Environment=MESSAGE_SOURCE_MAC=user@host-or-tailnet-address
+```
+
+Without it the hourly sync resolves nothing, and because the script treats an
+unreachable Mac as an ordinary sleeping laptop it **exits 0 and logs success**.
+That failure is silent by design and cost four days of missed messages once.
+If the archive looks behind, check the newest message timestamp against
+`journalctl`, not the exit status:
+
+```bash
+journalctl --user -u textview-imessage-sync.service -n 50 --no-pager | grep -i unreachable
+```
+
 To sync immediately, start the oneshot service and inspect its result:
 
 ```bash
