@@ -12,7 +12,11 @@ PATTERNS = {
     "a phone number": re.compile(r"\b(?:\+1[-. ]?)?\(?\d{3}\)?[-. ]\d{3}[-. ]\d{4}\b"),
     "a personal email address": re.compile(
         r"[\w.+-]+@(?:gmail|icloud|me|comcast|yahoo|outlook|hotmail|aol)\.[a-z]+", re.I),
-    "an Apple handle": re.compile(r"\b(?:iMessage;|tel:)\+?\d{7,}"),
+    # A number with no separators, as a handle or an importer argument has it.
+    # 555 numbers are the documented placeholders.
+    "a bare phone number": re.compile(r"(?<![\d.])(?:\+?1)?(?!555)[2-9]\d{2}[2-9]\d{6}(?!\d)"),
+    "an Apple handle": re.compile(r"\b(?:iMessage;|tel:)\+?(?!1?555)\d{7,}"),
+    "a tailnet hostname": re.compile(r"\b[a-z0-9-]+\.[a-z0-9-]+\.ts\.net\b", re.I),
     "a home directory path": re.compile(r"/(?:home|Users)/(?!USER\b)[a-z][\w.-]+"),
     "a tailnet address": re.compile(r"\b100\.(?:[6-9]\d|1\d\d|2[0-4]\d|25[0-5])\.\d{1,3}\.\d{1,3}\b"),
 }

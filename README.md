@@ -263,5 +263,12 @@ git config core.hooksPath .githooks
 ```
 
 Use placeholders in docs and fixtures: `USER`, `555-0100`, `user@example.com`.
+
+Repairs that name one exact message (a restored SMS whose sender a backup lost,
+a reaction delivered before its target) are real conversation text, and so is
+the owner's own number. They are read from `local_overrides.json`, which git
+ignores; `local_overrides.example.json` shows the format and
+`tools/local_overrides.py` loads it. Without the file the importers run with
+no such repairs.
 Screenshots are the easiest way to leak: any real screenshot of the reader shows
 real conversations, so shoot against a scrubbed database or crop to structure.
