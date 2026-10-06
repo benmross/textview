@@ -5,11 +5,11 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-WorkingDirectory=/home/USER/Documents/textview
+WorkingDirectory=%h/Documents/textview
 Environment=NODE_ENV=production
 Environment=TEXTVIEW_HOST=127.0.0.1
 Environment=TEXTVIEW_PORT=8787
-ExecStart=/home/USER/.nvm/versions/node/v24.18.0/bin/node --max-old-space-size=384 /home/USER/Documents/textview/server.mjs
+ExecStart=%h/.nvm/versions/node/v24.18.0/bin/node --max-old-space-size=384 %h/Documents/textview/server.mjs
 Restart=always
 RestartSec=3
 TimeoutStopSec=10

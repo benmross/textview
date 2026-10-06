@@ -4,4 +4,4 @@ After=textview-user.service
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh /home/USER/Documents/textview/tools/healthcheck.sh
+ExecStart=/bin/sh %h/Documents/textview/tools/healthcheck.sh

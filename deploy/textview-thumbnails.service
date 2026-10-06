@@ -4,8 +4,8 @@ After=textview-user.service
 
 [Service]
 Type=oneshot
-WorkingDirectory=/home/USER/Documents/textview
-ExecStart=/usr/bin/python3 /home/USER/Documents/textview/tools/build_thumbnails.py --archive-scan --workers 1 --prune
+WorkingDirectory=%h/Documents/textview
+ExecStart=/usr/bin/python3 %h/Documents/textview/tools/build_thumbnails.py --archive-scan --workers 1 --prune
 Nice=10
 IOSchedulingClass=idle
 CPUQuota=350%
